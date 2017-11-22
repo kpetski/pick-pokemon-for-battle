@@ -1,3 +1,9 @@
+# Pick Pokemon for Battle
+React application that uses pokemon api to give a list of types and their pokemon that will be double damage based on the users input type
+- [Demo](https://kpetski.github.io/git-pages/)
+- [All Git-Pages](https://kpetski.github.io/git-pages/)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
