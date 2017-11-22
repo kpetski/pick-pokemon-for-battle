@@ -11,18 +11,20 @@ class App extends Component {
     }
   }
 
+  //using https://cors-anywhere.herokuapp.com
+  //to bypass "Mixed Content" Error in Github Pages
   handleSubmit = (event) => {
     event.preventDefault();
     console.log('event: form submit', `"${this.state.typeInput}"`)
-    this.setState({doubleDamageTypes: []})
-    axios.get(`http://pokeapi.salestock.net/api/v2/type/${this.state.typeInput.toLocaleLowerCase().trim()}`)
+    this.setState({ doubleDamageTypes: [] })
+    axios.get(`https://cors-anywhere.herokuapp.com/http://pokeapi.salestock.net/api/v2/type/${this.state.typeInput.toLocaleLowerCase().trim()}`)
       .then(response => response.data)
       .then(body => {
         return body.damage_relations.double_damage_from  //get double damage types
       })
       .then(dblDamage => {
         dblDamage.map((type) => {
-          return axios.get(type.url)
+          return axios.get(`https://cors-anywhere.herokuapp.com/${type.url}`)
             .then(response => response.data)
             .then(body => { //save data for all double damage types
               let doubleDamageTypes = this.state.doubleDamageTypes.slice(0)
@@ -51,7 +53,7 @@ class App extends Component {
             <input type="text"
               value={this.state.typeInput}
               onChange={(event) => this.setState({ typeInput: event.target.value })}
-              placeholder="Pokemon Type"
+              placeholder="Pokemon Type to Attack"
               required />
             <button type="submit">Submit</button>
             <div id="errors" style={{ backgroundColor: '#ffdddd', color: '#f70707', marginTop: 10 }}></div>
